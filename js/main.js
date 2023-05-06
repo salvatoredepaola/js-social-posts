@@ -173,7 +173,7 @@ function renderPost(post) {
     const likesButton = document.createElement("a");
     likesButton.classList.add("like-button", "js-like-button");
     likesButton.href = "#";
-    likesButton.setAttribute("prova")
+    likesButton.setAttribute('data-postid', id);
 
     
     // classe like-button__icon
