@@ -56,109 +56,163 @@ const posts = [
     }
 ];
 
-// classe post
-const container = document.getElementById("container");;
-const post = document.createElement("div");;
-post.classList.add("post");
+const container = document.getElementById("container");
 
-// classe post__header
-const postHeader = document.createElement("div");
-postHeader.classList.add("post__header");
-
-// classe post-meta
-const postMeta = document.createElement("div");
-postMeta.classList.add("post-meta");
-
-// classe post-meta__icon
-const postMetaIcon = document.createElement("div");
-postMetaIcon.classList.add("post-meta__icon");
-
-// classe profile-pic
-const profilePic = document.createElement("img");
-profilePic.classList.add("profile-pic");
-let media = posts[0].author.image;
-profilePic.src = media;
-profilePic.alt = posts[0].author.name;
-
-// classe post-meta__data
-const postMetaData = document.createElement("div");
-postMetaData.classList.add("post-meta__data");
-
-// classe post-meta__author
-const postMetaAutor = document.createElement("div");
-postMetaAutor.classList.add("post-meta__author");
-let author = posts[0].author.name;
-postMetaAutor.innerText = author;
-
-// classe post-meta__time
-const postMetaTime = document.createElement("div");
-postMetaTime.classList.add("post-meta__time");
-let time = posts[0].created;
-postMetaTime.innerText = time;
-
-// classe post__text
-const postText = document.createElement("div");
-postText.classList.add("post__text");
-let text = posts[0].content;
-postText.innerText = text;
-
-// classe post__image
-const postImage = document.createElement("img");
-postImage.classList.add("post__image");
-let image = posts[0].media;
-postImage.src = image;
-
-// classe post__footer
-const postFooter = document.createElement("div");
-postFooter.classList.add("post__footer");
-
-// classe likes
-const likes = document.createElement("div");
-likes.classList.add("likes", "js-likes");
-
-// classe likes__cta
-const likesCta = document.createElement("div");
-likesCta.classList.add("likes__cta");
-
-// classe like-button
-const likesButton = document.createElement("a");
-likesButton.classList.add("like-button", "js-like-button");
-likesButton.href = "#";
-
-// classe like-button__icon
-const likesButtonIcon = document.createElement("i");
-likesButtonIcon.classList.add("like-button__icon","fas", "fa-thumbs-up");
-likesButtonIcon.ariaHidden = "true";
-
-// classe like-button__label
-const likesButtonLabel = document.createElement("span");
-likesButtonLabel.classList.add("like-button__label");
-likesButtonLabel.innerText = "Mi Piace";
-
-// classe likes__counter
-const likesCounter = document.createElement("div");
-likesCounter.classList.add("likes__counter");
-likesCounter.innerText = `Piace a ${posts[0].likes} persone`
+for (let i = 0; i < posts.length; i++) {
+    const postCorrente = posts[i];
+    const template = renderPost(postCorrente);
+    container.innerHTML += template;
+}
 
 
-container.appendChild(post);
-post.appendChild(postHeader);
-postHeader.appendChild(postMeta);
-postMeta.appendChild(postMetaIcon);
-postMetaIcon.appendChild(profilePic);
-postMeta.appendChild(postMetaData);
-postMetaData.appendChild(postMetaAutor);
-postMetaData.appendChild(postMetaTime);
-postHeader.appendChild(postText);
-postHeader.appendChild(postImage);
-postHeader.appendChild(postFooter);
-postFooter.appendChild(likes);
-likes.appendChild(likesCta);
-likesCta.appendChild(likesButton);
-likesButton.appendChild(likesButtonIcon);
-likesButton.appendChild(likesButtonLabel);
-likes.appendChild(likesCounter);
+// function renderPost(post) {
 
+//     const { author, created, content, media, likes, id } = post;
+
+//     const template = `
+//     <div class="post">
+//         <div class="post__header">
+//             <div class="post-meta">                    
+//                 <div class="post-meta__icon">
+//                 <img class="profile-pic" src="${ author.image }" alt="${ author.name }">                    
+//                 </div>
+//                 <div class="post-meta__data">
+//                     <div class="post-meta__author">${ author.name }</div>
+//                     <div class="post-meta__time">${ created }</div>
+//                 </div>                    
+//             </div>
+//         </div>
+//         <div class="post__text">${ content }</div>
+//         <div class="post__image">
+//             <img src="${ media }" alt="">
+//         </div>
+//         <div class="post__footer">
+//             <div class="likes js-likes">
+//                 <div class="likes__cta">
+//                     <a class="like-button js-like-button" href="#" data-postid="${ id }">
+//                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+//                         <span class="like-button__label">Mi Piace</span>
+//                     </a>
+//                 </div>
+//                 <div class="likes__counter">
+//                     Piace a <b id="like-counter-${ id }" class="js-likes-counter">${ likes }</b> persone
+//                 </div>
+//             </div> 
+//         </div>            
+//     </div>`;
+
+//     return template;
+// }
+
+
+
+function renderPost(post) {
+    
+    const { author, created, content, media, likes, id } = post;
+
+
+    // classe post
+    const postss = document.createElement("div");
+    postss.classList.add("post");
+    
+    // classe post__header
+    const postHeader = document.createElement("div");
+    postHeader.classList.add("post__header");
+    
+    // classe post-meta
+    const postMeta = document.createElement("div");
+    postMeta.classList.add("post-meta");
+    
+    // classe post-meta__icon
+    const postMetaIcon = document.createElement("div");
+    postMetaIcon.classList.add("post-meta__icon");
+    
+    // classe profile-pic
+    const profilePic = document.createElement("img");
+    profilePic.classList.add("profile-pic");
+    profilePic.src = author.image;
+    profilePic.alt = author.name;
+    
+    // classe post-meta__data
+    const postMetaData = document.createElement("div");
+    postMetaData.classList.add("post-meta__data");
+    
+    // classe post-meta__author
+    const postMetaAutor = document.createElement("div");
+    postMetaAutor.classList.add("post-meta__author");
+    postMetaAutor.innerText = author.name;
+    
+    // classe post-meta__time
+    const postMetaTime = document.createElement("div");
+    postMetaTime.classList.add("post-meta__time");
+    postMetaTime.innerText = created;
+    
+    // classe post__text
+    const postText = document.createElement("div");
+    postText.classList.add("post__text");
+    postText.innerText = content;
+    
+    // classe post__image
+    const postImage = document.createElement("img");
+    postImage.classList.add("post__image");
+    postImage.src = media;
+    
+    // classe post__footer
+    const postFooter = document.createElement("div");
+    postFooter.classList.add("post__footer");
+    
+    // classe likes
+    const mipiace = document.createElement("div");
+    mipiace.classList.add("likes", "js-likes");
+    
+    // classe likes__cta
+    const likesCta = document.createElement("div");
+    likesCta.classList.add("likes__cta");
+    
+    // classe like-button
+    const likesButton = document.createElement("a");
+    likesButton.classList.add("like-button", "js-like-button");
+    likesButton.href = "#";
+    likesButton.setAttribute("prova")
+
+    
+    // classe like-button__icon
+    const likesButtonIcon = document.createElement("i");
+    likesButtonIcon.classList.add("like-button__icon","fas", "fa-thumbs-up");
+    likesButtonIcon.ariaHidden = "true";
+    
+    
+    // classe like-button__label
+    const likesButtonLabel = document.createElement("span");
+    likesButtonLabel.classList.add("like-button__label");
+    likesButtonLabel.innerText = "Mi Piace";
+    
+    // classe likes__counter
+    const likesCounter = document.createElement("div");
+    likesCounter.classList.add("likes__counter");
+    likesCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone`
+    
+    
+    container.appendChild(postss);
+    postss.appendChild(postHeader);
+    postHeader.appendChild(postMeta);
+    postMeta.appendChild(postMetaIcon);
+    postMetaIcon.appendChild(profilePic);
+    postMeta.appendChild(postMetaData);
+    postMetaData.appendChild(postMetaAutor);
+    postMetaData.appendChild(postMetaTime);
+    postHeader.appendChild(postText);
+    postHeader.appendChild(postImage);
+    postHeader.appendChild(postFooter);
+    postFooter.appendChild(mipiace);
+    mipiace.appendChild(likesCta);
+    likesCta.appendChild(likesButton);
+    likesButton.appendChild(likesButtonIcon);
+    likesButton.appendChild(likesButtonLabel);
+    mipiace.appendChild(likesCounter);
+    
+    
+}
 
 
 
