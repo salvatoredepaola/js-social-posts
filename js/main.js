@@ -65,47 +65,6 @@ for (let i = 0; i < posts.length; i++) {
 }
 
 
-// function renderPost(post) {
-
-//     const { author, created, content, media, likes, id } = post;
-
-//     const template = `
-//     <div class="post">
-//         <div class="post__header">
-//             <div class="post-meta">                    
-//                 <div class="post-meta__icon">
-//                 <img class="profile-pic" src="${ author.image }" alt="${ author.name }">                    
-//                 </div>
-//                 <div class="post-meta__data">
-//                     <div class="post-meta__author">${ author.name }</div>
-//                     <div class="post-meta__time">${ created }</div>
-//                 </div>                    
-//             </div>
-//         </div>
-//         <div class="post__text">${ content }</div>
-//         <div class="post__image">
-//             <img src="${ media }" alt="">
-//         </div>
-//         <div class="post__footer">
-//             <div class="likes js-likes">
-//                 <div class="likes__cta">
-//                     <a class="like-button js-like-button" href="#" data-postid="${ id }">
-//                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-//                         <span class="like-button__label">Mi Piace</span>
-//                     </a>
-//                 </div>
-//                 <div class="likes__counter">
-//                     Piace a <b id="like-counter-${ id }" class="js-likes-counter">${ likes }</b> persone
-//                 </div>
-//             </div> 
-//         </div>            
-//     </div>`;
-
-//     return template;
-// }
-
-
-
 function renderPost(post) {
     
     const { author, created, content, media, likes, id } = post;
@@ -192,12 +151,19 @@ function renderPost(post) {
     likesCounter.classList.add("likes__counter");
     likesCounter.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone`
     
-    
+    const iniziali = document.createElement("div");
+    iniziali.innerText = getIniziali(author.name)
+
+    if(author.image != null) {
+        postMetaIcon.appendChild(profilePic);
+    } else {
+        postMetaIcon.appendChild(iniziali);
+    }
+
     container.appendChild(postss);
     postss.appendChild(postHeader);
     postHeader.appendChild(postMeta);
     postMeta.appendChild(postMetaIcon);
-    postMetaIcon.appendChild(profilePic);
     postMeta.appendChild(postMetaData);
     postMetaData.appendChild(postMetaAutor);
     postMetaData.appendChild(postMetaTime);
@@ -210,10 +176,13 @@ function renderPost(post) {
     likesButton.appendChild(likesButtonIcon);
     likesButton.appendChild(likesButtonLabel);
     mipiace.appendChild(likesCounter);
-    
-    
+
+
 }
 
+function getIniziali(autore) {
+    return autore[0] + autore.split(" ")[1][0];
+}
 
 
 

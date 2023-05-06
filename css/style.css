@@ -45,6 +45,7 @@ h1 {
 }
 
 .post-meta__icon {
+    display: flex;
     margin-right: 24px;
 }
 
