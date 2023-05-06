@@ -61,7 +61,6 @@ const container = document.getElementById("container");
 for (let i = 0; i < posts.length; i++) {
     const postCorrente = posts[i];
     const template = renderPost(postCorrente);
-    container.innerHTML += template;
 }
 
 
