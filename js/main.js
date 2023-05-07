@@ -64,6 +64,26 @@ for (let i = 0; i < posts.length; i++) {
 }
 
 
+const likesContainer = document.getElementsByClassName("js-likes");
+
+for (let i = 0; i < likesContainer.length; i++) {
+    const currentContainer = likesContainer[i];
+    const btn = currentContainer.querySelector(".like-button");
+    const likes = currentContainer.querySelector(".js-likes-counter");
+
+    btn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        if( !btn.classList.contains("like-button--liked") ) {
+            btn.classList.add("like-button--liked");
+            likes.innerText++;
+        } else {
+            btn.classList.remove("like-button--liked");
+            likes.innerText--;
+        }
+    });
+}
+
 function renderPost(post) {
     
     const { author, created, content, media, likes, id } = post;
